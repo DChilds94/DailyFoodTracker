@@ -2,9 +2,12 @@ package models.consumer;
 
 import models.day.Day;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "consumers")
 public class Consumer {
 
     private int id;
@@ -19,6 +22,9 @@ public class Consumer {
         this.days = new HashSet<Day>();
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -27,6 +33,7 @@ public class Consumer {
         this.id = id;
     }
 
+    @Column(name="name")
     public String getName() {
         return name;
     }
@@ -35,6 +42,7 @@ public class Consumer {
         this.name = name;
     }
 
+//    @Column(name = "days")
     public Set<Day> getDays() {
         return days;
     }

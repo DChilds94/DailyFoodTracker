@@ -69,9 +69,6 @@ public class DBHelper {
             e.printStackTrace();
         } finally {
         } session.close();
-
     }
-
-
 
 }

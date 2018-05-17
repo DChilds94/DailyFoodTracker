@@ -2,6 +2,10 @@ package models.meal;
 
 import models.food.Food;
 
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,7 +40,10 @@ public class Meal {
         this.meal = meal;
     }
 
-
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name="food_meals", joinColumns = {@JoinColumn(name="meal_id", nullable = false, updatable = false)},
+        inverseJoinColumns = {@JoinColumn(name="food_id", nullable = false, updatable = false)}
+    )
     public Set<Food> getFoods() {
         return foods;
     }
