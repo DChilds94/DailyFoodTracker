@@ -8,18 +8,17 @@ import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@Table(name="foods")
 public abstract class Food {
 
     private int id;
-    private String name;
     private int kcal;
     private Set<Meal> meals;
 
     public Food() {
     }
 
-    public Food(String name, int kcal) {
-        this.name = name;
+    public Food(int kcal) {
         this.kcal = kcal;
         this.meals = new HashSet<Meal>();
     }
@@ -33,15 +32,6 @@ public abstract class Food {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Column(name = "name")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Column(name = "kcal")

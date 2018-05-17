@@ -5,7 +5,7 @@ public class PastaSauce extends Food {
     public PastaSauce() {
     }
 
-    public PastaSauce(String name, int kcal) {
-        super(name, kcal);
+    public PastaSauce(int kcal) {
+        super(kcal);
     }
 }

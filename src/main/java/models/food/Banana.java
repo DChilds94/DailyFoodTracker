@@ -5,8 +5,8 @@ public class Banana extends Food {
     public Banana() {
     }
 
-    public Banana(String name, int kcal) {
-        super(name, kcal);
+    public Banana(int kcal) {
+        super(kcal);
     }
 
 }

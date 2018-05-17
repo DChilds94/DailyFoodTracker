@@ -1,29 +1,34 @@
 package models.meal;
 
+import models.day.Day;
 import models.food.Food;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "meals")
 public class Meal {
 
     private int id;
     private MealType meal;
     private Set<Food> foods;
+    private Day day;
 
     public Meal() {
     }
 
-    public Meal(MealType meal) {
+    public Meal(MealType meal, Day day) {
         this.meal = meal;
         this.foods = new HashSet<Food>();
+        this.day = day;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     public int getId() {
         return id;
     }
@@ -31,7 +36,7 @@ public class Meal {
     public void setId(int id) {
         this.id = id;
     }
-
+    @Column(name="meal_type")
     public MealType getMeal() {
         return meal;
     }
@@ -50,5 +55,15 @@ public class Meal {
 
     public void setFoods(Set<Food> foods) {
         this.foods = foods;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="day_id", nullable = false)
+    public Day getDay() {
+        return day;
+    }
+
+    public void setDay(Day day) {
+        this.day = day;
     }
 }

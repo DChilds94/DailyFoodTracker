@@ -42,8 +42,8 @@ public class Consumer {
         this.name = name;
     }
 
-//    @Column(name = "days")
-    public Set<Day> getDays() {
+    @OneToMany(mappedBy = "consumer")
+        public Set<Day> getDays() {
         return days;
     }
 
