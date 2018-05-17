@@ -66,4 +66,8 @@ public class Meal {
     public void setDay(Day day) {
         this.day = day;
     }
+
+    public void addFood(Food food) {
+        this.foods.add(food);
+    }
 }

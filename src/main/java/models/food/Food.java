@@ -7,18 +7,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="foods")
-public abstract class Food {
+public class Food {
 
     private int id;
+    private String name;
     private int kcal;
     private Set<Meal> meals;
 
     public Food() {
     }
 
-    public Food(int kcal) {
+    public Food(String name, int kcal) {
+        this.name = name;
         this.kcal = kcal;
         this.meals = new HashSet<Meal>();
     }
@@ -52,5 +53,18 @@ public abstract class Food {
 
     public void setMeals(Set<Meal> meals) {
         this.meals = meals;
+    }
+
+    public void addMeal(Meal meal) {
+        this.meals.add(meal);
+    }
+
+    @Column(name="name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

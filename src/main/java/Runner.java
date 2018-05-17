@@ -1,3 +1,4 @@
+import db.DBDay;
 import db.DBHelper;
 import models.consumer.Consumer;
 import models.day.Day;
@@ -6,6 +7,7 @@ import models.meal.Meal;
 import models.meal.MealType;
 
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class Runner {
 
@@ -17,18 +19,22 @@ public class Runner {
         DBHelper.save(consumer2);
 
         Day day = new Day(new GregorianCalendar (2018,5,11), consumer1);
-
-        Banana banana = new Banana(10);
-        Pasta spag = new Pasta(150);
-        PastaSauce sauce = new PastaSauce(25);
-        Meaballs meatballs = new Meaballs(80);
+        DBHelper.save(day);
+        Food banana = new Food("Banana", 10);
+        Food spag = new Food ("Spag", 150);
+        Food sauce = new Food ("Suace", 25);
+        Food meatballs = new Food ("Meatballs", 80);
         DBHelper.save(banana);
         DBHelper.save(spag);
         DBHelper.save(sauce);
         DBHelper.save(meatballs);
 
-        Meal spagBolMeatBall = new Meal(MealType.DINNER, day);
-        DBHelper.save(spagBolMeatBall);
+        Meal meal1 = new Meal(MealType.DINNER, day);
+        DBHelper.save(meal1);
+
+        consumer1.logFood(day, meal1, spag);
+        List<Meal> mealsInDay = DBDay.getMealFromDay(day);
+
 
     }
 }

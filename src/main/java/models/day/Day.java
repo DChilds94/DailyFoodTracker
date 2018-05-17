@@ -1,11 +1,14 @@
 package models.day;
 
+import db.DBDay;
+import models.food.Food;
 import models.meal.Meal;
 import models.consumer.Consumer;
 
 import javax.persistence.*;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -64,4 +67,13 @@ public class Day {
     public void setConsumer(Consumer consumer) {
         this.consumer = consumer;
     }
+
+    public void addMeal(Meal meal) {
+        this.meals.add(meal);
+    }
+
+//    public static List<Food> getFoodFromDay() {
+//        DBDay.getMealFromDay(Day);
+//    }
+
 }

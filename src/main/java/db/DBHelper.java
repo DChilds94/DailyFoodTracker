@@ -1,5 +1,9 @@
 package db;
 
+import models.consumer.Consumer;
+import models.day.Day;
+import models.food.Food;
+import models.meal.Meal;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -69,6 +73,12 @@ public class DBHelper {
             e.printStackTrace();
         } finally {
         } session.close();
+    }
+
+    public void logMeal(Food food, Meal meal) {
+        food.addMeal(meal);
+        meal.addFood(food);
+        save(food);
     }
 
 }
